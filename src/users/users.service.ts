@@ -61,26 +61,6 @@ export class UsersService {
     }
   }
 
-  async updateMany(dto: { ids: string[]; data: UpdateUserDto[] }): Promise<User[]> {
-    try {
-      const users = await this.findByIds(dto.ids);
-      const updatedUsers = await Promise.all(
-        users.map(async (user, index) => {
-          const updatedUser = await this.userRepository.save({
-            ...user,
-            ...dto.data[index],
-            organisation: { id: dto.data[index]?.organisation || user.organization?.id },
-            roles: dto.data[index].roles?.map((id) => ({ id })) || user.roles
-          });
-          return updatedUser;
-        })
-      );
-      return updatedUsers;
-    } catch {
-      throw new BadRequestException();
-    }
-  }
-
   async findOne(id: string): Promise<User> {
     try {
       const user = await this.userRepository.findOneOrFail({
@@ -160,7 +140,6 @@ export class UsersService {
       const user = await this.userRepository.save({
         ...oldUser,
         ...dto,
-        organisation: { id: dto?.organisation || oldUser.organization?.id },
         roles: dto.roles?.map((id) => ({ id })) || oldUser.roles
       });
       return user;

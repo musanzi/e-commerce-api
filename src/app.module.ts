@@ -11,6 +11,7 @@ import { EmailModule } from './email/email.module';
 import { UsersModule } from './users/users.module';
 import { TransformInterceptor } from './shared/interceptors/transform.interceptor';
 import { DatabaseModule } from './database/database.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { DatabaseModule } from './database/database.module';
     AuthModule,
     UsersModule,
     EmailModule,
-    DatabaseModule
+    DatabaseModule,
+    ProductsModule
   ],
   providers: [
     { provide: APP_GUARD, useClass: AuthGuard },

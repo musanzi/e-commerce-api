@@ -11,7 +11,7 @@ import { UsersService } from './users.service';
 import CreateUserDto from './dto/create-user.dto';
 
 @Controller('users')
-@Auth(RoleEnum.Cartograph)
+@Auth(RoleEnum.Admin)
 export class UsersController {
   constructor(private userService: UsersService) {}
 
@@ -33,12 +33,6 @@ export class UsersController {
   @Get(':id')
   findOne(@Param('id') id: string): Promise<User> {
     return this.userService.findOne(id);
-  }
-
-  @Patch('update-many')
-  @Auth(RoleEnum.Admin)
-  updateMany(@Body() dto: { ids: string[]; data: UpdateUserDto[] }): Promise<User[]> {
-    return this.userService.updateMany(dto);
   }
 
   @Patch(':id')

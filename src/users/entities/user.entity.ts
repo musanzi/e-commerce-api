@@ -1,9 +1,9 @@
 import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
-import { AbstractEntity } from '../../shared/utils/abstract.entity';
+import { BaseEntity } from '../../shared/utils/base.entity';
 import { Role } from '../roles/entities/role.entity';
 
 @Entity()
-export class User extends AbstractEntity {
+export class User extends BaseEntity {
   @Column({ unique: true })
   email: string;
 
@@ -15,9 +15,6 @@ export class User extends AbstractEntity {
 
   @Column({ nullable: true })
   phone_number: string;
-
-  @Column({ type: 'text', nullable: true })
-  bio: string;
 
   @Column({ nullable: true })
   address: string;
