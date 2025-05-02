@@ -63,6 +63,8 @@ export default class DbSeeder implements Seeder {
           return await projectRepository.save({
             name,
             slug,
+            price: +faker.commerce.price({ min: 10, max: 1000, dec: 2 }),
+            quantity: faker.number.int({ min: 0, max: 100 }),
             description: faker.commerce.productDescription(),
             type: types[0],
             tags: faker.helpers.arrayElements(tags, faker.number.int({ min: 2, max: 3 })),

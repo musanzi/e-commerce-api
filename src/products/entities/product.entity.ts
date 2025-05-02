@@ -13,6 +13,12 @@ export class Product extends BaseEntity {
   @Column({ unique: true })
   slug: string;
 
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  price: number;
+
+  @Column({ type: 'int', default: 0 })
+  quantity: number;
+
   @Column({ type: 'text', nullable: true })
   description: string;
 

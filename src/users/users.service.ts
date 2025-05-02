@@ -65,7 +65,7 @@ export class UsersService {
     try {
       const user = await this.userRepository.findOneOrFail({
         where: { id },
-        relations: ['roles', 'organization']
+        relations: ['roles']
       });
       const roles = user.roles.map((role) => role.name);
       return { ...user, roles } as unknown as User;
